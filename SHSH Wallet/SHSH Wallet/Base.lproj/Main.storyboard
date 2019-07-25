@@ -112,7 +112,7 @@
                                 <rect key="frame" x="0.0" y="228" width="320" height="291"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="60" id="I2N-v9-UoY" customClass="FirmwareTableViewCell" customModule="SHSH_Wallet" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="60" id="I2N-v9-UoY" customClass="FirmwareTableViewCell" customModule="SHSH_Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I2N-v9-UoY" id="AOh-Z8-gDm">
@@ -610,8 +610,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="NDG-mD-wZn" secondAttribute="bottom" id="80C-uD-8tH"/>
                                                 <constraint firstItem="NDG-mD-wZn" firstAttribute="top" secondItem="B3C-dN-G5l" secondAttribute="top" id="8B4-0U-RBb"/>
-                                                <constraint firstItem="F40-C9-jFp" firstAttribute="leading" secondItem="NDG-mD-wZn" secondAttribute="trailing" constant="46" id="HpH-oG-8Nq"/>
                                                 <constraint firstItem="F40-C9-jFp" firstAttribute="top" secondItem="B3C-dN-G5l" secondAttribute="top" constant="7" id="UFN-8C-NXB"/>
+                                                <constraint firstItem="F40-C9-jFp" firstAttribute="centerY" secondItem="B3C-dN-G5l" secondAttribute="centerY" id="bu6-dg-IqY"/>
                                                 <constraint firstAttribute="trailing" secondItem="F40-C9-jFp" secondAttribute="trailing" constant="16" id="cNg-RX-gFe"/>
                                                 <constraint firstItem="NDG-mD-wZn" firstAttribute="leading" secondItem="B3C-dN-G5l" secondAttribute="leading" constant="16" id="kya-0j-6Vh"/>
                                                 <constraint firstAttribute="bottom" secondItem="F40-C9-jFp" secondAttribute="bottom" constant="7" id="u22-Cj-joC"/>
@@ -646,9 +646,9 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="5Ci-0c-EeV" secondAttribute="trailing" constant="16" id="5rs-bO-JO0"/>
                                                 <constraint firstItem="0sT-ps-S0P" firstAttribute="top" secondItem="24k-b8-9tp" secondAttribute="top" id="B8F-z6-JFZ"/>
-                                                <constraint firstItem="5Ci-0c-EeV" firstAttribute="leading" secondItem="0sT-ps-S0P" secondAttribute="trailing" constant="46" id="CZu-Ap-woW"/>
                                                 <constraint firstAttribute="bottom" secondItem="5Ci-0c-EeV" secondAttribute="bottom" constant="7" id="Fm0-Cq-Ulg"/>
                                                 <constraint firstAttribute="bottom" secondItem="0sT-ps-S0P" secondAttribute="bottom" id="KS9-aZ-aiv"/>
+                                                <constraint firstItem="5Ci-0c-EeV" firstAttribute="centerY" secondItem="24k-b8-9tp" secondAttribute="centerY" id="fj4-B4-YrC"/>
                                                 <constraint firstItem="5Ci-0c-EeV" firstAttribute="top" secondItem="24k-b8-9tp" secondAttribute="top" constant="7" id="lO1-RG-uzc"/>
                                                 <constraint firstItem="0sT-ps-S0P" firstAttribute="leading" secondItem="24k-b8-9tp" secondAttribute="leading" constant="16" id="oly-yA-Xkp"/>
                                             </constraints>
@@ -711,7 +711,7 @@
                                 <rect key="frame" x="0.0" y="197" width="320" height="322"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Ck2-AO-4mb" customClass="SingleDeviceTableViewCell" customModule="SHSH_Wallet" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Ck2-AO-4mb" customClass="SingleDeviceTableViewCell" customModule="SHSH_Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ck2-AO-4mb" id="kb9-Mm-ZIJ">
@@ -830,7 +830,7 @@
                                     <constraint firstAttribute="height" constant="139" id="1MM-WB-NM9"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="72" id="aFZ-Lf-Bi0" customClass="SingleDeviceTableViewCell" customModule="SHSH_Wallet" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="72" id="aFZ-Lf-Bi0" customClass="SingleDeviceTableViewCell" customModule="SHSH_Wallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aFZ-Lf-Bi0" id="aJU-cG-89q">
@@ -838,13 +838,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzr-9W-bLp">
-                                                    <rect key="frame" x="12" y="0.0" width="160" height="71.5"/>
+                                                    <rect key="frame" x="12" y="0.0" width="187.5" height="71.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIp-Kf-cNt" customClass="SRCopyableLabel" customModule="SHSH_Wallet" customModuleProvider="target">
-                                                    <rect key="frame" x="160" y="0.0" width="160" height="71.5"/>
+                                                    <rect key="frame" x="187.5" y="0.0" width="187.5" height="71.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
