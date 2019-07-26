@@ -11,7 +11,7 @@ Main Features:
 
 Supported Devices: All iOS 10.0+ devices, both jailbroken and non-jailbroken. You can install the app via AppSync if on a jailbroken device or through Cydia Impactor on a non-jailbroken device. However, it's only installable via Cydia Impactor now as I have to figure out how to fakesign it. Otherwise, you can install the DEB version provided by https://www.reddit.com/user/DamienPwnz/
 
-Download the IPA from here: https://github.com/KawaiiAurora/SHSH-Wallet/releases
+Download the IPA/DEB from here: https://github.com/KawaiiAurora/SHSH-Wallet/releases
 
 ![alt text](https://raw.githubusercontent.com/KawaiiAurora/SHSH-Wallet/master/Screenshots/S1.jpeg)
 ![alt text](https://raw.githubusercontent.com/KawaiiAurora/SHSH-Wallet/master/Screenshots/S2.jpeg)
