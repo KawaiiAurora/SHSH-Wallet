@@ -29,6 +29,7 @@
 		D0B16F8C22DA8AD7000CE573 /* UserDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B16F8B22DA8AD7000CE573 /* UserDevice.swift */; };
 		D0C16BCD22DB73FF0003F365 /* SingleDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C16BCC22DB73FF0003F365 /* SingleDeviceTableViewCell.swift */; };
 		D0C16BCF22DB74B30003F365 /* UserDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C16BCE22DB74B30003F365 /* UserDeviceViewController.swift */; };
+		D0CB263E22EB30A000150F9B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CB263D22EB30A000150F9B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		D0B16F8B22DA8AD7000CE573 /* UserDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDevice.swift; sourceTree = "<group>"; };
 		D0C16BCC22DB73FF0003F365 /* SingleDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		D0C16BCE22DB74B30003F365 /* UserDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeviceViewController.swift; sourceTree = "<group>"; };
+		D0CB263D22EB30A000150F9B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F1218742C6E12CB103D0941E /* Pods-SHSH Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHSH Wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-SHSH Wallet/Pods-SHSH Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		F249CC9C565C9B3F34F8FD81 /* Pods-SHSH Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHSH Wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SHSH Wallet/Pods-SHSH Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,8 +109,9 @@
 				D0C16BC822DB730B0003F365 /* View Controlelrs */,
 				D0C16BCB22DB73430003F365 /* Data Classes */,
 				D0C16BCA22DB73250003F365 /* View Cells */,
-				D0AECC3E22D92FEF0025999A /* LaunchScreen.storyboard */,
+				D0CB263C22EB307500150F9B /* Others */,
 				D0AECC4122D92FEF0025999A /* Info.plist */,
+				D0AECC3E22D92FEF0025999A /* LaunchScreen.storyboard */,
 				D0AECC3C22D92FEF0025999A /* Assets.xcassets */,
 				D0AECC3922D92FEF0025999A /* SHSH_Wallet.xcdatamodeld */,
 			);
@@ -150,6 +153,14 @@
 				D01485F822D9418B0096172D /* Firmware.swift */,
 			);
 			path = "Data Classes";
+			sourceTree = "<group>";
+		};
+		D0CB263C22EB307500150F9B /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				D0CB263D22EB30A000150F9B /* Constants.swift */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		DF7BDCE734AD9CA2B7208BB6 /* Frameworks */ = {
@@ -255,10 +266,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SHSH Wallet/Pods-SHSH Wallet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01485FB22D952BB0096172D /* SigningCollectionViewCell.swift in Sources */,
+				D0CB263E22EB30A000150F9B /* Constants.swift in Sources */,
 				D0AECC3522D92FEE0025999A /* SigningDeviceViewController.swift in Sources */,
 				D0C16BCF22DB74B30003F365 /* UserDeviceViewController.swift in Sources */,
 				D0B16F8C22DA8AD7000CE573 /* UserDevice.swift in Sources */,
@@ -431,7 +445,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5SWZK93FVQ;
 				INFOPLIST_FILE = "SHSH Wallet/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Home.SHSH-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -448,7 +462,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5SWZK93FVQ;
 				INFOPLIST_FILE = "SHSH Wallet/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Home.SHSH-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -1,16 +1,20 @@
 PODS:
+  - EasyTipView (2.0.4)
   - ObjectMapper (3.5.1)
 
 DEPENDENCIES:
+  - EasyTipView (~> 2.0.4)
   - ObjectMapper (~> 3.5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - EasyTipView
     - ObjectMapper
 
 SPEC CHECKSUMS:
+  EasyTipView: 4f8beae0a82db2ca4a9b5fd658785fc5f61d296b
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
 
-PODFILE CHECKSUM: 789c949a3ebdeb61e444d29e392a4b7c8ae6e5dc
+PODFILE CHECKSUM: dcadb2f314a521ff9c8f73bd47289589260a219d
 
 COCOAPODS: 1.5.2

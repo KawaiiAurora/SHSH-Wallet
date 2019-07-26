@@ -35,7 +35,7 @@ class AboutTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return 7
     }
     
     @IBAction func twitterButton(){
@@ -58,6 +58,12 @@ class AboutTableViewController: UITableViewController {
     
     @IBAction func shshSigningButton(){
         let apiURL = URL(string: "https://tsssaver.1conan.com/")
+        let safariView = SFSafariViewController(url: apiURL!)
+        self.present(safariView, animated: true, completion: nil)
+    }
+    
+    @IBAction func toolTipsButton(){
+        let apiURL = URL(string: "https://github.com/teodorpatras/EasyTipView")
         let safariView = SFSafariViewController(url: apiURL!)
         self.present(safariView, animated: true, completion: nil)
     }

@@ -8,17 +8,23 @@
 
 import UIKit
 import CoreData
+import EasyTipView
 
-class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, EasyTipViewDelegate{
     
     @IBOutlet var deviceTextField: UITextField!
     @IBOutlet var nicknameTextField: UITextField!
     @IBOutlet var boardIDTextField: UITextField!
     @IBOutlet var ECIDTextField: UITextField!
+    @IBOutlet var apNonceTextField: UITextField!
     @IBOutlet var deviceImageView: UIImageView!
+    @IBOutlet var apnonceButton: UIButton!
     var devices: [Device]!
     var selectedDevice: Device!
     var myDevices = [UserDevice]()
+    
+    //Easy Tip View Prefs
+    var easyTipPrefs = EasyTipView.Preferences()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +36,11 @@ class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSourc
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        easyTipPrefs.drawing.font = UIFont.systemFont(ofSize: 15.0)
+        easyTipPrefs.drawing.foregroundColor = UIColor.black
+        easyTipPrefs.drawing.backgroundColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1.0)
+        
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -48,7 +59,7 @@ class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSourc
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 5
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -80,6 +91,14 @@ class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSourc
         selectedDevice = devices[row]
     }
     
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        //Do nothing
+    }
+    
+    @IBAction func showToolTip(){
+        EasyTipView.show(animated: true, forView: apnonceButton, withinSuperview: self.view, text: "An APNonce is a random string generated when you restore. You can choose whether to specify it on pre-A12 devices since blobs without an APNonce work on those. However, you MUST specify an APNonce for A12 devices if you want to get useable blobs. Press on this tooltip to dismiss", preferences: easyTipPrefs, delegate: self)
+    }
+    
     func createPickerView(){
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -104,6 +123,8 @@ class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSourc
         let textFieldArray = [deviceTextField, nicknameTextField, boardIDTextField, nicknameTextField]
         
         var textFieldsVerified = false
+        var apNonceVerified = false
+        var allVerified = false
         
         if isTextFieldArrayAllNotEmpty(textFieldArray: textFieldArray){
             textFieldsVerified = true
@@ -111,9 +132,28 @@ class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSourc
             let alertMessage = UIAlertController(title:"Oops", message: NSLocalizedString("A required field is blank! Please fill in all fields!", comment: "A required field is blank"), preferredStyle: .alert)
             alertMessage.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
             self.present(alertMessage, animated: true, completion: nil)
+            return
         }
         
-        if textFieldsVerified{
+        if(Constants.apNonceModels.contains(selectedDevice.modelID!)){
+            if(isTextFieldEmpty(textfield: apNonceTextField)){
+                apNonceVerified = false
+                let alertMessage = UIAlertController(title:"Oops", message: NSLocalizedString("You must provide an APNonce as it's mandatory for A12+ devices!", comment: "A required field is blank"), preferredStyle: .alert)
+                alertMessage.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
+                self.present(alertMessage, animated: true, completion: nil)
+                return
+            }else{
+                apNonceVerified = true
+            }
+        }else{
+            apNonceVerified = true
+        }
+        
+        if(apNonceVerified && textFieldsVerified){
+            allVerified = true
+        }
+        
+        if allVerified{
             if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
                 let userDevice = UserDeviceMO(context: appDelegate.persistentContainer.viewContext)
                 userDevice.nickname = nicknameTextField.text!
@@ -121,6 +161,12 @@ class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSourc
                 userDevice.boardID = boardIDTextField.text!
                 userDevice.ecid = ECIDTextField.text!
                 userDevice.name = selectedDevice.name!
+                if(apNonceTextField.text! != ""){
+                    userDevice.apnonce = apNonceTextField.text!
+                }else{
+                    print(apNonceTextField.text!)
+                    userDevice.apnonce = apNonceTextField.text!
+                }
                 if let imageData = UIImagePNGRepresentation(selectedDevice.image!) {
                     userDevice.image = NSData(data: imageData) as Data
                 }

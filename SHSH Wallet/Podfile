@@ -7,5 +7,6 @@ target 'SHSH Wallet' do
 
   # Pods for SHSH Wallet
   pod 'ObjectMapper', '~> 3.5'
+  pod 'EasyTipView', '~> 2.0.4'
 
 end

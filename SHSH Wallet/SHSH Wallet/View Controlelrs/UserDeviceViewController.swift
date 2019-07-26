@@ -16,8 +16,13 @@ class UserDeviceViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView: UITableView!
     
     var userDevice: UserDeviceMO!
+    var devices: [Device] {
+        get {
+            return ((self.tabBarController!.viewControllers![0] as! UINavigationController).viewControllers.first as! SigningViewController).devices
+        }
+    }
     
-    var fields = ["ECID","Model ID","Board ID"]
+    var fields = ["ECID","Model ID","Board ID","APNonce"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +46,31 @@ class UserDeviceViewController: UIViewController, UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if(isViewLoaded){
+            tableView.reloadData()
+            
+            if let deviceImage = UIImage(data: userDevice.image!){
+                deviceImageView.image = deviceImage
+            }else{
+                deviceImageView.image = UIImage(named: "placeholder")
+            }
+            
+            nicknameLabel.text = userDevice.nickname
+            typeLabel.text = userDevice.name
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fields.count
+        if(userDevice.apnonce != nil && userDevice.apnonce != ""){
+            return fields.count
+        }else{
+            return fields.count-1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,6 +86,9 @@ class UserDeviceViewController: UIViewController, UITableViewDelegate, UITableVi
             case 2:
             cell.fieldLabel.text = fields[indexPath.row]
             cell.valueLabel.text = userDevice.boardID
+            case 3:
+            cell.fieldLabel.text = fields[indexPath.row]
+            cell.valueLabel.text = userDevice.apnonce
             default:
             cell.fieldLabel.text = ""
             cell.valueLabel.text = ""
@@ -79,6 +106,7 @@ class UserDeviceViewController: UIViewController, UITableViewDelegate, UITableVi
             let destinationController = segue.destination as! UINavigationController
             let targetController = destinationController.topViewController as! EditDeviceTableViewController
             targetController.deviceBeingEdited = userDevice
+            targetController.devices = devices
         }
     }
     

@@ -8,18 +8,22 @@
 
 import UIKit
 import CoreData
+import EasyTipView
 
-class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, EasyTipViewDelegate{
     
     @IBOutlet var deviceTextField: UITextField!
     @IBOutlet var nicknameTextField: UITextField!
     @IBOutlet var boardIDTextField: UITextField!
     @IBOutlet var ECIDTextField: UITextField!
+    @IBOutlet var apNonceTextField: UITextField!
     @IBOutlet var deviceImageView: UIImageView!
+    @IBOutlet var apnonceButton: UIButton!
     var devices: [Device]!
     var selectedDevice: Device!
     var deviceBeingEdited: UserDeviceMO!
     var myDevices = [UserDevice]()
+    var easyTipPrefs = EasyTipView.Preferences()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +32,16 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
         nicknameTextField.text = deviceBeingEdited.nickname
         boardIDTextField.text = deviceBeingEdited.boardID
         ECIDTextField.text = deviceBeingEdited.ecid
+        apNonceTextField.text = deviceBeingEdited.apnonce
         if let deviceImage = UIImage(data: deviceBeingEdited.image!){
             deviceImageView.image = deviceImage
         }else{
             deviceImageView.image = UIImage(named: "placeholder")
         }
         
+        easyTipPrefs.drawing.font = UIFont.systemFont(ofSize: 15.0)
+        easyTipPrefs.drawing.foregroundColor = UIColor.black
+        easyTipPrefs.drawing.backgroundColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1.0)
         
         createPickerView()
         
@@ -58,7 +66,7 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 5
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -91,6 +99,14 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
         selectedDevice = devices[row]
     }
     
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        //Do nothing
+    }
+    
+    @IBAction func showToolTip(){
+        EasyTipView.show(animated: true, forView: apnonceButton, withinSuperview: self.view, text: "An APNonce is a random string generated when you restore. You can choose whether to specify it on pre-A12 devices since blobs without an APNonce work on those. However, you MUST specify an APNonce for A12 devices if you want to get useable blobs. Press on this tooltip to dismiss", preferences: easyTipPrefs, delegate: self)
+    }
+    
     func createPickerView(){
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -115,6 +131,8 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
         let textFieldArray = [deviceTextField, nicknameTextField, boardIDTextField, nicknameTextField]
         
         var textFieldsVerified = false
+        var apNonceVerified = false
+        var allVerified = false
         
         if isTextFieldArrayAllNotEmpty(textFieldArray: textFieldArray){
             textFieldsVerified = true
@@ -122,9 +140,50 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
             let alertMessage = UIAlertController(title:"Oops", message: NSLocalizedString("A required field is blank! Please fill in all fields!", comment: "A required field is blank"), preferredStyle: .alert)
             alertMessage.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
             self.present(alertMessage, animated: true, completion: nil)
+            return
         }
         
-        if textFieldsVerified{
+        if(selectedDevice == nil){
+            if(Constants.apNonceModels.contains(deviceBeingEdited.modelID!)){
+                if let deviceChanged = selectedDevice{
+                    deviceBeingEdited.modelID = deviceChanged.modelID!
+                }//Only run if device has been changed
+                if(isTextFieldEmpty(textfield: apNonceTextField)){
+                    apNonceVerified = false
+                    let alertMessage = UIAlertController(title:"Oops", message: NSLocalizedString("You must provide an APNonce as it's mandatory for A12+ devices!", comment: "A required field is blank"), preferredStyle: .alert)
+                    alertMessage.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
+                    self.present(alertMessage, animated: true, completion: nil)
+                    return
+                }else{
+                    apNonceVerified = true
+                }
+            }else{
+                apNonceVerified = true
+            }//If Device didn't get changed
+        }else{
+            if(Constants.apNonceModels.contains(selectedDevice.modelID!)){
+                if let deviceChanged = selectedDevice{
+                    deviceBeingEdited.modelID = deviceChanged.modelID!
+                }//Only run if device has been changed
+                if(isTextFieldEmpty(textfield: apNonceTextField)){
+                    apNonceVerified = false
+                    let alertMessage = UIAlertController(title:"Oops", message: NSLocalizedString("You must provide an APNonce as it's mandatory for A12+ devices!", comment: "A required field is blank"), preferredStyle: .alert)
+                    alertMessage.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
+                    self.present(alertMessage, animated: true, completion: nil)
+                    return
+                }else{
+                    apNonceVerified = true
+                }
+            }else{
+                apNonceVerified = true
+            }
+        }//If it did
+        
+        if(apNonceVerified && textFieldsVerified){
+            allVerified = true
+        }
+        
+        if allVerified{
             if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
                 deviceBeingEdited.nickname = nicknameTextField.text!
                 if let deviceChanged = selectedDevice{
@@ -132,6 +191,7 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
                 }//Only run if device has been changed
                 deviceBeingEdited.boardID = boardIDTextField.text!
                 deviceBeingEdited.ecid = ECIDTextField.text!
+                deviceBeingEdited.apnonce = apNonceTextField.text!
                 if let deviceChanged = selectedDevice{
                     deviceBeingEdited.name = deviceChanged.name!
                 }

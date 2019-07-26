@@ -14,11 +14,10 @@ class SaveBlobsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var saveBlobsView: UIView!
     @IBOutlet var tableView: UITableView!
     let savingURL = URL(string: "https://tsssaver.1conan.com/")!
-    //let savingURL = URL(string: "https://www.google.com/")!
     var webView: WKWebView!
     
     var userDevice:UserDeviceMO!
-    var fields = ["ECID","Model ID","Board ID"]
+    var fields = ["ECID","Model ID","Board ID","APNonce"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +50,12 @@ class SaveBlobsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fields.count
+        if(userDevice.apnonce != nil && userDevice.apnonce != ""){
+            self.navigationItem.prompt = "Rember to specify your APNonce!"
+            return fields.count
+        }else{
+            return fields.count-1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,6 +71,9 @@ class SaveBlobsViewController: UIViewController, UITableViewDelegate, UITableVie
         case 2:
             cell.fieldLabel.text = fields[indexPath.row]
             cell.valueLabel.text = userDevice.boardID
+        case 3:
+            cell.fieldLabel.text = fields[indexPath.row]
+            cell.valueLabel.text = userDevice.apnonce
         default:
             cell.fieldLabel.text = ""
             cell.valueLabel.text = ""
