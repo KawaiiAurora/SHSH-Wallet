@@ -9,7 +9,7 @@ Main Features:
 * The ability to save blobs for saved devices through 1Conan. The screen in which you save blobs also has the required information (which is copiable) you are to enter into 1Conan so that saving blobs only takes a few seconds
 * Limited Offline Functionality (Must've opened it succesfully at least once)
 
-Supported Devices: All iOS 10.0+ devices, both jailbroken and non-jailbroken. You can install the app via AppSync if on a jailbroken device or through Cydia Impactor on a non-jailbroken device. However, it's only installable via Cydia Impactor now as I have to figure out how to fakesign it ;)
+Supported Devices: All iOS 10.0+ devices, both jailbroken and non-jailbroken. You can install the app via AppSync if on a jailbroken device or through Cydia Impactor on a non-jailbroken device. However, it's only installable via Cydia Impactor now as I have to figure out how to fakesign it. Otherwise, you can install the DEB version provided by https://www.reddit.com/user/DamienPwnz/
 
 Download the IPA from here: https://github.com/KawaiiAurora/SHSH-Wallet/releases
 
