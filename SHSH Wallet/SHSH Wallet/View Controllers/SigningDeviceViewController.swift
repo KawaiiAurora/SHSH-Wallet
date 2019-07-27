@@ -42,6 +42,7 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
                 if let firmwareJSONData = firmwareJSONData{
                     self.parseDeviceData(data: firmwareJSONData, offlineMode: offlineMode, completion: { () in
                         //Reload data before returning
+                        print("OK")
                         OperationQueue.main.addOperation {
                             print("Reloading")
                             self.collectionView.reloadData()
@@ -150,17 +151,6 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
                 devices.append(tempDevice)
             }
             
-            //Getting Images of parsed devices
-            let imageGroup = DispatchGroup()
-            imageGroup.enter()
-                
-            NetworkTools.getDeviceImages(devices: devices, offlineMode: offlineMode, completion: { () in
-                    print("Images are Done")
-                    imageGroup.leave()
-                })
-            
-            
-            
             //Sort device array
             devices = devices.sorted(by: {$0.name! < $1.name!})
             
@@ -175,7 +165,11 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
                 }
             }
             
-            completion()
+            //Getting Images of parsed devices
+            NetworkTools.getDeviceImages(devices: devices, offlineMode: offlineMode, completion: { () in
+                    print("Images are Done")
+                    completion()
+                })
         }catch{
             print("Sorry, no error handling yet!")
         }

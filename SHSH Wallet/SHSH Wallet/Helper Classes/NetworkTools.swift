@@ -101,42 +101,62 @@ class NetworkTools{
             sessionConfig.timeoutIntervalForResource = 120.0
             let session = URLSession(configuration: sessionConfig)
             
+            let imageGroup = DispatchGroup()
+            
             for device in devices{
-                let fullImageURLString = Constants.deviceImageAPI_URL + device.modelID! + ".png"
-                
-                if let fullImageURL = URL(string: fullImageURLString){
-                    let request = URLRequest(url: fullImageURL)
-                    let task = session.dataTask(with: request, completionHandler: {
-                        (data, response, error) -> Void in
-                        
-                        if let error = error{
-                            print(error)
-                            device.image = UIImage(named: "placeholder")!
-                        }else{
-                        
-                            if let data = data{
-                                if let image = UIImage(data: data){
-                                    device.image = image
-                                }
-                            }else{
-                                device.image = UIImage(named: "placeholder")!
-                            }
-                        }
-                    })
-                    
-                    task.resume()
-                }
-                else{
-                    device.image = UIImage(named: "placeholder")!
-                }
+                imageGroup.enter()
+                getDeviceImage(device: device, offlineMode: offlineMode, session: session, completion: {
+                    () in
+                    imageGroup.leave()
+                })
             }
-        }else{
-            for device in devices{
-                device.image = UIImage(named: "placeholder")!
-            }
+            
+            imageGroup.notify(queue: DispatchQueue.main, execute: {
+                print("Finished all requests.")
+                completion()
+            })
         }
         
-        completion()
+        
     }
     
+    static func getDeviceImage(device: Device, offlineMode: Bool, session: URLSession, completion: @escaping ()->Void){
+        if(!offlineMode){
+            
+            let fullImageURLString = Constants.deviceImageAPI_URL + device.modelID! + ".png"
+            
+            if let fullImageURL = URL(string: fullImageURLString){
+                let request = URLRequest(url: fullImageURL)
+                let task = session.dataTask(with: request, completionHandler: {
+                    (data, response, error) -> Void in
+                    
+                    if let error = error{
+                        print(error)
+                        device.image = UIImage(named: "placeholder")!
+                        completion()
+                    }else{
+                        
+                        if let data = data{
+                            if let image = UIImage(data: data){
+                                device.image = image
+                                completion()
+                            }
+                        }else{
+                            device.image = UIImage(named: "placeholder")!
+                            completion()
+                        }
+                    }
+                })
+                
+                task.resume()
+            }
+            else{
+                device.image = UIImage(named: "placeholder")!
+                completion()
+            }
+        }else{
+            device.image = UIImage(named: "placeholder")!
+            completion()
+        }
+    }
 }
