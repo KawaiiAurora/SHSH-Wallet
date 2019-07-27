@@ -30,6 +30,7 @@
 		D0C16BCD22DB73FF0003F365 /* SingleDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C16BCC22DB73FF0003F365 /* SingleDeviceTableViewCell.swift */; };
 		D0C16BCF22DB74B30003F365 /* UserDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C16BCE22DB74B30003F365 /* UserDeviceViewController.swift */; };
 		D0CB263E22EB30A000150F9B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CB263D22EB30A000150F9B /* Constants.swift */; };
+		D0E2E18222EC59FD00712BD0 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E18122EC59FD00712BD0 /* NetworkTools.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		D0C16BCC22DB73FF0003F365 /* SingleDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		D0C16BCE22DB74B30003F365 /* UserDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeviceViewController.swift; sourceTree = "<group>"; };
 		D0CB263D22EB30A000150F9B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D0E2E18122EC59FD00712BD0 /* NetworkTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		F1218742C6E12CB103D0941E /* Pods-SHSH Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHSH Wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-SHSH Wallet/Pods-SHSH Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		F249CC9C565C9B3F34F8FD81 /* Pods-SHSH Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHSH Wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SHSH Wallet/Pods-SHSH Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,10 +108,11 @@
 			children = (
 				D0AECC3222D92FEE0025999A /* AppDelegate.swift */,
 				D0AECC3622D92FEF0025999A /* Main.storyboard */,
-				D0C16BC822DB730B0003F365 /* View Controlelrs */,
+				D0C16BC822DB730B0003F365 /* View Controllers */,
 				D0C16BCB22DB73430003F365 /* Data Classes */,
 				D0C16BCA22DB73250003F365 /* View Cells */,
 				D0CB263C22EB307500150F9B /* Others */,
+				D0E2E18022EC586900712BD0 /* Helper Classes */,
 				D0AECC4122D92FEF0025999A /* Info.plist */,
 				D0AECC3E22D92FEF0025999A /* LaunchScreen.storyboard */,
 				D0AECC3C22D92FEF0025999A /* Assets.xcassets */,
@@ -118,7 +121,7 @@
 			path = "SHSH Wallet";
 			sourceTree = "<group>";
 		};
-		D0C16BC822DB730B0003F365 /* View Controlelrs */ = {
+		D0C16BC822DB730B0003F365 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				D0AECC3422D92FEE0025999A /* SigningDeviceViewController.swift */,
@@ -130,7 +133,7 @@
 				D02B5E7022DE867B00FA8C7E /* EditDeviceViewController.swift */,
 				D0B16F8922DA86B1000CE573 /* MyDevicesTableViewController.swift */,
 			);
-			path = "View Controlelrs";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		D0C16BCA22DB73250003F365 /* View Cells */ = {
@@ -161,6 +164,14 @@
 				D0CB263D22EB30A000150F9B /* Constants.swift */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		D0E2E18022EC586900712BD0 /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D0E2E18122EC59FD00712BD0 /* NetworkTools.swift */,
+			);
+			path = "Helper Classes";
 			sourceTree = "<group>";
 		};
 		DF7BDCE734AD9CA2B7208BB6 /* Frameworks */ = {
@@ -296,6 +307,7 @@
 				D0AECC3322D92FEE0025999A /* AppDelegate.swift in Sources */,
 				D0B16F8A22DA86B1000CE573 /* MyDevicesTableViewController.swift in Sources */,
 				D0C16BCD22DB73FF0003F365 /* SingleDeviceTableViewCell.swift in Sources */,
+				D0E2E18222EC59FD00712BD0 /* NetworkTools.swift in Sources */,
 				D0B16F8622DA7EA0000CE573 /* AddDeviceTableViewController.swift in Sources */,
 				D01485F722D940200096172D /* Device.swift in Sources */,
 				D02BDA4422DE9A85007C5F11 /* AboutTableViewController.swift in Sources */,
