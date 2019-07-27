@@ -20,13 +20,21 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
     @IBOutlet var deviceImageView: UIImageView!
     @IBOutlet var apnonceButton: UIButton!
     var devices: [Device]!
-    var selectedDevice: Device!
     var deviceBeingEdited: UserDeviceMO!
-    var myDevices = [UserDevice]()
     var easyTipPrefs = EasyTipView.Preferences()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Get Devices Array
+        guard let devices = SigningViewController.getDevices() else{
+            print("ERROR GETTING DEVICES")
+            let alert = UIAlertController(title: "Error", message: "Failed to load internal device array. Reload app and try again!", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        self.devices = devices
         
         deviceTextField.text = deviceBeingEdited.name! + " ("+deviceBeingEdited.modelID!+")"
         nicknameTextField.text = deviceBeingEdited.nickname
@@ -44,12 +52,6 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
         easyTipPrefs.drawing.backgroundColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1.0)
         
         createPickerView()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func didReceiveMemoryWarning() {
@@ -86,17 +88,27 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if let deviceName = devices[row].name, let deviceModelID = devices[row].modelID{
+        //Changing selected device
+        let selectedDevice = devices[row]
+        if let deviceName = selectedDevice.name, let deviceModelID = selectedDevice.modelID{
             deviceTextField.text = deviceName + " ("+deviceModelID+")"
         }
-        if let deviceBoardID = devices[row].boardConfig{
+        if let deviceBoardID = selectedDevice.boardConfig{
             boardIDTextField.text = deviceBoardID
             print(deviceBoardID)
         }
-        if let deviceImage = devices[row].image{
+        if let deviceImage = selectedDevice.image{
             deviceImageView.image = deviceImage
         }
-        selectedDevice = devices[row]
+        
+        //Updating the fields of the device being edited
+        deviceBeingEdited.name = selectedDevice.name
+        if let deviceImage = selectedDevice.image{
+            if let imageData = UIImagePNGRepresentation(deviceImage) {
+                deviceBeingEdited.image = NSData(data: imageData) as Data
+            }
+        }
+        deviceBeingEdited.modelID = selectedDevice.modelID
     }
     
     func easyTipViewDidDismiss(_ tipView: EasyTipView) {
@@ -143,41 +155,19 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
             return
         }
         
-        if(selectedDevice == nil){
-            if(Constants.apNonceModels.contains(deviceBeingEdited.modelID!)){
-                if let deviceChanged = selectedDevice{
-                    deviceBeingEdited.modelID = deviceChanged.modelID!
-                }//Only run if device has been changed
-                if(isTextFieldEmpty(textfield: apNonceTextField)){
-                    apNonceVerified = false
-                    let alertMessage = UIAlertController(title:"Oops", message: NSLocalizedString("You must provide an APNonce as it's mandatory for A12+ devices!", comment: "A required field is blank"), preferredStyle: .alert)
-                    alertMessage.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
-                    self.present(alertMessage, animated: true, completion: nil)
-                    return
-                }else{
-                    apNonceVerified = true
-                }
-            }else{
-                apNonceVerified = true
-            }//If Device didn't get changed
-        }else{
-            if(Constants.apNonceModels.contains(selectedDevice.modelID!)){
-                if let deviceChanged = selectedDevice{
-                    deviceBeingEdited.modelID = deviceChanged.modelID!
-                }//Only run if device has been changed
-                if(isTextFieldEmpty(textfield: apNonceTextField)){
-                    apNonceVerified = false
-                    let alertMessage = UIAlertController(title:"Oops", message: NSLocalizedString("You must provide an APNonce as it's mandatory for A12+ devices!", comment: "A required field is blank"), preferredStyle: .alert)
-                    alertMessage.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
-                    self.present(alertMessage, animated: true, completion: nil)
-                    return
-                }else{
-                    apNonceVerified = true
-                }
+        if(Constants.apNonceModels.contains(deviceBeingEdited.modelID!)){
+            if(isTextFieldEmpty(textfield: apNonceTextField)){
+                apNonceVerified = false
+                let alertMessage = UIAlertController(title:"Oops", message: NSLocalizedString("You must provide an APNonce as it's mandatory for A12+ devices!", comment: "A required field is blank"), preferredStyle: .alert)
+                alertMessage.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
+                self.present(alertMessage, animated: true, completion: nil)
+                return
             }else{
                 apNonceVerified = true
             }
-        }//If it did
+        }else{
+            apNonceVerified = true
+        }//If Device didn't get changed
         
         if(apNonceVerified && textFieldsVerified){
             allVerified = true
@@ -186,20 +176,10 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
         if allVerified{
             if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
                 deviceBeingEdited.nickname = nicknameTextField.text!
-                if let deviceChanged = selectedDevice{
-                    deviceBeingEdited.modelID = deviceChanged.modelID!
-                }//Only run if device has been changed
                 deviceBeingEdited.boardID = boardIDTextField.text!
                 deviceBeingEdited.ecid = ECIDTextField.text!
                 deviceBeingEdited.apnonce = apNonceTextField.text!
-                if let deviceChanged = selectedDevice{
-                    deviceBeingEdited.name = deviceChanged.name!
-                }
-                if let deviceChanged = selectedDevice{
-                    if let imageData = UIImagePNGRepresentation(deviceChanged.image!) {
-                        deviceBeingEdited.image = NSData(data: imageData) as Data
-                    }
-                }
+                //Image, Name and Model ID were changed before hand
                 print("Saving data to context ...")
                 appDelegate.saveContext()
                 dismiss(animated: true, completion: nil)
@@ -242,4 +222,3 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
     }
     
 }
-

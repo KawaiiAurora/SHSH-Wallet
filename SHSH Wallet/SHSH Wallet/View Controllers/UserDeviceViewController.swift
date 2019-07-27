@@ -16,11 +16,6 @@ class UserDeviceViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView: UITableView!
     
     var userDevice: UserDeviceMO!
-    var devices: [Device] {
-        get {
-            return ((self.tabBarController!.viewControllers![0] as! UINavigationController).viewControllers.first as! SigningViewController).devices
-        }
-    }
     
     var fields = ["ECID","Model ID","Board ID","APNonce"]
 
@@ -106,19 +101,7 @@ class UserDeviceViewController: UIViewController, UITableViewDelegate, UITableVi
             let destinationController = segue.destination as! UINavigationController
             let targetController = destinationController.topViewController as! EditDeviceTableViewController
             targetController.deviceBeingEdited = userDevice
-            targetController.devices = devices
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

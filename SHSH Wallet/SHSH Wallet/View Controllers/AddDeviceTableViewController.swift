@@ -29,6 +29,15 @@ class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let devices = SigningViewController.getDevices() else{
+            print("ERROR GETTING DEVICES")
+            let alert = UIAlertController(title: "Error", message: "Failed to load internal device array. Reload app and try again!", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        self.devices = devices
+        
         createPickerView()
 
         // Uncomment the following line to preserve selection between presentations

@@ -11,14 +11,8 @@ import CoreData
 
 class MyDevicesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var devices: [Device] {
-        get {
-            return ((self.tabBarController!.viewControllers![0] as! UINavigationController).viewControllers.first as! SigningViewController).devices
-        }
-    }
     var myDevices:[UserDeviceMO] = []
     var fetchResultController: NSFetchedResultsController<UserDeviceMO>!
-    var selectedRow = -1
     
     
     override func viewDidLoad() {
@@ -78,8 +72,7 @@ class MyDevicesTableViewController: UITableViewController, NSFetchedResultsContr
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = indexPath.row
-        performSegue(withIdentifier: "showUserDevice", sender: self)
+        performSegue(withIdentifier: "showUserDevice", sender: indexPath.row)
     }
     
     func controllerWillChangeContent(_ controller:
@@ -131,14 +124,13 @@ class MyDevicesTableViewController: UITableViewController, NSFetchedResultsContr
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == "addDevice"{
-            let destinationController = segue.destination as! UINavigationController
-            let targetController = destinationController.topViewController as! AddDeviceTableViewController
-            targetController.devices = devices
-        }
         if segue.identifier == "showUserDevice"{
+            guard let index = sender as? Int else{
+                print("An error occurred")
+                return
+            }
             let destinationController = segue.destination as! UserDeviceViewController
-            destinationController.userDevice = myDevices[selectedRow]
+            destinationController.userDevice = myDevices[index]
         }
     }
     

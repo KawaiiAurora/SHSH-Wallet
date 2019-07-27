@@ -13,10 +13,8 @@ import ObjectMapper
 class SigningViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet var collectionView: UICollectionView!
-    var devices = [Device]()
-    var selectedIndex = 0
-    var localData:[ServerDataMO] = []
-    var alert = UIAlertController(title: "SHSH Wallet", message: "Application is loading. Please wait", preferredStyle: .alert)
+    static private var devices = [Device]()
+    let alert = UIAlertController(title: "SHSH Wallet", message: "Application is loading. Please wait", preferredStyle: .alert)
     
     var fetchResultController: NSFetchedResultsController<ServerDataMO>!
 
@@ -24,13 +22,12 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
         super.viewDidLoad()
         
         present(alert, animated: true, completion: nil)
-        //var firmwareJSONData: Data?
         
         //Get Local Data
-        loadLocalData()
+        let localData = loadLocalData()
         
         //Getting Network Data and then moving on to parsing the data
-        NetworkTools.getFirmwareData(localData: localData, completion: { (firmwareJSONData, status) in
+        NetworkTools.getFirmwareData(localData: localData!, completion: { (firmwareJSONData, status) in
             if(status == "Online Data" || status == "Local Data") {
                 var offlineMode = false
                 
@@ -68,34 +65,36 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return devices.count
+        return SigningViewController.devices.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! SigningCollectionViewCell
         
-        cell.nameLabel.text = devices[indexPath.item].name
-        if let image = devices[indexPath.item].image{
+        cell.nameLabel.text = SigningViewController.devices[indexPath.item].name
+        if let image = SigningViewController.devices[indexPath.item].image{
             cell.imageView.image = image
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndex = indexPath.item
-        performSegue(withIdentifier: "showDevice", sender: collectionView)
+        performSegue(withIdentifier: "showDevice", sender: indexPath.item)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "showDevice"{
+            guard let selectedRow = sender as? Int else{
+                return
+            }
             let destinationController = segue.destination as! DeviceInfoViewController
-            destinationController.device = devices[selectedIndex]
+            destinationController.device = SigningViewController.devices[selectedRow]
         }
     }
     
     //Get Local Data
-    func loadLocalData(){
+    func loadLocalData() -> [ServerDataMO]!{
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate){
             let context = appDelegate.persistentContainer.viewContext
             let fetchRequest: NSFetchRequest<ServerDataMO> = ServerDataMO.fetchRequest()
@@ -105,14 +104,15 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
             do{
                 try self.fetchResultController.performFetch()
                 if let fetchedObjects = self.fetchResultController.fetchedObjects{
-                    self.localData = fetchedObjects
                     print("OFFLINE DATA GET")
-                    print("Local Data: "+String(self.localData.count))
+                    print("Local Data: "+String(fetchedObjects.count))
+                    return fetchedObjects
                 }
             }catch{
                 print(error)
             }
         }
+        return []
     }
     
     func parseDeviceData(data: Data, offlineMode: Bool, completion: @escaping ()->Void){
@@ -148,14 +148,14 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
                 //Adding Model ID to device object
                 tempDevice.modelID = deviceName
                 
-                devices.append(tempDevice)
+                SigningViewController.devices.append(tempDevice)
             }
             
             //Sort device array
-            devices = devices.sorted(by: {$0.name! < $1.name!})
+            SigningViewController.devices = SigningViewController.devices.sorted(by: {$0.name! < $1.name!})
             
             //Appending firmwares per device
-            for device in devices{
+            for device in SigningViewController.devices{
                 for firmware in device.firmwaresDict!{
                     guard let tempFirmware = Mapper<Firmware>().map(JSON: firmware) else{
                         print("BAD FIRMWARE MAP")
@@ -166,13 +166,17 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
             }
             
             //Getting Images of parsed devices
-            NetworkTools.getDeviceImages(devices: devices, offlineMode: offlineMode, completion: { () in
+            NetworkTools.getDeviceImages(devices: SigningViewController.devices, offlineMode: offlineMode, completion: { () in
                     print("Images are Done")
                     completion()
                 })
         }catch{
             print("Sorry, no error handling yet!")
         }
+    }
+    
+    static func getDevices() -> [Device]?{
+        return devices
     }
     
 }
