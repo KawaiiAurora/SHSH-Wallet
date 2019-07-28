@@ -36,7 +36,6 @@ class NetworkTools{
             
             if let error = error{
                 print("ERROR: \(error)")
-                print("Using Local Data")
                 
                 if(localDataAvailable){
                     if let firmwareData = localData[0].firmwareJSON{
@@ -50,6 +49,7 @@ class NetworkTools{
                     print("No Local Firmware Data Was Found...")
                     completion(nil,"No Local Data")
                 }
+                return
             }
             
             if let data = data{
@@ -72,6 +72,7 @@ class NetworkTools{
                     
                     //If it got till here, the data is fine and the firmware JSON file can be returned
                     completion(data,"Online Data")
+                    return
                 }
             }
             else{
@@ -88,6 +89,7 @@ class NetworkTools{
                     print("No Local Firmware Data Was Found...")
                     completion(nil,"No Local Data")
                 }
+                return
             }
         })
         
@@ -95,34 +97,29 @@ class NetworkTools{
     }
     
     static func getDeviceImages(devices: [Device], offlineMode: Bool, completion: @escaping ()->Void){
-        if(!offlineMode){
-            let sessionConfig = URLSessionConfiguration.default
-            sessionConfig.timeoutIntervalForRequest = 120.0
-            sessionConfig.timeoutIntervalForResource = 120.0
-            let session = URLSession(configuration: sessionConfig)
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 120.0
+        sessionConfig.timeoutIntervalForResource = 120.0
+        let session = URLSession(configuration: sessionConfig)
             
-            let imageGroup = DispatchGroup()
+        let imageGroup = DispatchGroup()
             
-            for device in devices{
-                imageGroup.enter()
-                getDeviceImage(device: device, offlineMode: offlineMode, session: session, completion: {
-                    () in
-                    imageGroup.leave()
-                })
-            }
-            
-            imageGroup.notify(queue: DispatchQueue.main, execute: {
-                print("Finished all requests.")
-                completion()
+        for device in devices{
+            imageGroup.enter()
+            getDeviceImage(device: device, offlineMode: offlineMode, session: session, completion: {
+                () in
+                imageGroup.leave()
             })
         }
         
-        
+        imageGroup.notify(queue: DispatchQueue.main, execute: {
+            print("Finished all requests.")
+            completion()
+        })
     }
     
     static func getDeviceImage(device: Device, offlineMode: Bool, session: URLSession, completion: @escaping ()->Void){
         if(!offlineMode){
-            
             let fullImageURLString = Constants.deviceImageAPI_URL + device.modelID! + ".png"
             
             if let fullImageURL = URL(string: fullImageURLString){

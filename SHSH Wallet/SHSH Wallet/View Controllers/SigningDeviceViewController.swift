@@ -47,7 +47,7 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
                         }
                     })
                 }else{
-                    print("ERROR")
+                    self.alert.message = "An error has occured. Please try again"
                 }
             }else if(status == "No Local Data"){
                 self.alert.message = "No Local Data was found. Please open the application successfully at least once!"
