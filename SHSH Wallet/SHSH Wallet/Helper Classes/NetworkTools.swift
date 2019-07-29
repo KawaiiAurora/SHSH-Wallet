@@ -131,16 +131,19 @@ class NetworkTools{
                         print(error)
                         device.image = UIImage(named: "placeholder")!
                         completion()
+                        return
                     }else{
                         
                         if let data = data{
                             if let image = UIImage(data: data){
                                 device.image = image
                                 completion()
+                                return
                             }
                         }else{
                             device.image = UIImage(named: "placeholder")!
                             completion()
+                            return
                         }
                     }
                 })
@@ -150,10 +153,12 @@ class NetworkTools{
             else{
                 device.image = UIImage(named: "placeholder")!
                 completion()
+                return
             }
         }else{
             device.image = UIImage(named: "placeholder")!
             completion()
+            return
         }
     }
 }

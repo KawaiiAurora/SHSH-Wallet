@@ -10,6 +10,7 @@ import UIKit
 
 class SelectDeviceCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet var deviceTypeLabel: UILabel!
+    @IBOutlet weak var deviceTypeLabel: UILabel!
+    @IBOutlet weak var deviceTypeImageView: UIImageView!
     
 }

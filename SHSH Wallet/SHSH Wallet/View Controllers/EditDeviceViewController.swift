@@ -27,7 +27,7 @@ class EditDeviceTableViewController: UITableViewController, UIPickerViewDataSour
         super.viewDidLoad()
         
         //Get Devices Array
-        guard let devices = SigningViewController.getDevices() else{
+        guard let devices = SelectDeviceCollectionViewController.getDevices() else{
             print("ERROR GETTING DEVICES")
             let alert = UIAlertController(title: "Error", message: "Failed to load internal device array. Reload app and try again!", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)

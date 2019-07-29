@@ -1200,15 +1200,26 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DgI-Rf-tz2">
+                                            <rect key="frame" x="40" y="0.0" width="96" height="108"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="108" id="3ct-e9-Ezw"/>
+                                                <constraint firstAttribute="width" constant="96" id="Bqw-0T-bPm"/>
+                                                <constraint firstAttribute="width" secondItem="DgI-Rf-tz2" secondAttribute="height" multiplier="8:9" id="zOJ-20-JBj"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                 </view>
                                 <constraints>
                                     <constraint firstItem="IIF-aT-SwT" firstAttribute="centerX" secondItem="IUP-PM-0Io" secondAttribute="centerX" id="9jD-nZ-Zn9"/>
+                                    <constraint firstItem="DgI-Rf-tz2" firstAttribute="centerX" secondItem="IUP-PM-0Io" secondAttribute="centerX" id="Ie7-9B-cy3"/>
+                                    <constraint firstItem="IIF-aT-SwT" firstAttribute="top" secondItem="DgI-Rf-tz2" secondAttribute="bottom" constant="26" id="ZWQ-X6-3XV"/>
+                                    <constraint firstItem="DgI-Rf-tz2" firstAttribute="top" secondItem="IUP-PM-0Io" secondAttribute="top" id="pO7-li-NYD"/>
                                     <constraint firstAttribute="bottom" secondItem="IIF-aT-SwT" secondAttribute="bottom" constant="20" id="qF2-IV-F6x"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="deviceTypeImageView" destination="DgI-Rf-tz2" id="k3z-kl-d4W"/>
                                     <outlet property="deviceTypeLabel" destination="IIF-aT-SwT" id="xbt-Qw-gbK"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="vcl-Aj-qJn"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -1218,10 +1229,13 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Select Device" id="mlS-Zk-3dq"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showSigningStatus" id="hgk-wa-DP2"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pl0-Dm-P1G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005" y="114.08450704225352"/>
+            <point key="canvasLocation" x="1033" y="113"/>
         </scene>
         <!--My Devices-->
         <scene sceneID="yJv-XK-si4">
