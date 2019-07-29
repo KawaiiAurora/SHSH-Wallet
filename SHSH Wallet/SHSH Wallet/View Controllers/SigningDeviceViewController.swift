@@ -10,10 +10,12 @@ import UIKit
 import CoreData
 import ObjectMapper
 
-class SigningViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate {
+class SigningViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet var collectionView: UICollectionView!
     var devices:[Device]! //Given by device type selector
+    var searchResults=[Device]()
+    var isSearching = false
     let alert = UIAlertController(title: "SHSH Wallet", message: "Application is loading. Please wait", preferredStyle: .alert)
     
     var fetchResultController: NSFetchedResultsController<ServerDataMO>!
@@ -28,23 +30,45 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return devices.count
+        if(!isSearching){
+            return devices.count
+        }else{
+            return searchResults.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! SigningCollectionViewCell
         
-        cell.nameLabel.text = devices[indexPath.item].name
-        if let image = devices[indexPath.item].image{
-            cell.imageView.image = image
+        if(!isSearching){
+            cell.nameLabel.text = devices[indexPath.item].name
+            if let image = devices[indexPath.item].image{
+                cell.imageView.image = image
+            }
+        }else{
+            cell.nameLabel.text = searchResults[indexPath.item].name
+            if let image = searchResults[indexPath.item].image{
+                cell.imageView.image = image
+            }
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showDevice", sender: indexPath.item)
-        
     }
+    
+    /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+     
+     isSearching = searchText.isEmpty ? true : false
+        searchResults = searchText.isEmpty ? [] : devices.filter { (item: Device) -> Bool in
+            // If dataItem matches the searchText, return true to include it
+            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        }
+        
+        collectionView.reloadData()
+    }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "showDevice"{

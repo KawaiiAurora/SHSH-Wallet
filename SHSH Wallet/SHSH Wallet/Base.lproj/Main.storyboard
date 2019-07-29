@@ -18,21 +18,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="xpu-Ui-py9">
+                                <rect key="frame" x="0.0" y="64" width="320" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hrL-Cu-6aq"/>
+                                </connections>
+                            </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TGo-03-JC9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="399"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lda-xI-SIe">
-                                    <size key="itemSize" width="120" height="130"/>
+                                    <size key="itemSize" width="120" height="129"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="PL1-2n-j4a" customClass="SigningCollectionViewCell" customModule="SHSH_Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="129"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zl-2z-1Lx">
@@ -74,10 +81,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="TGo-03-JC9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2M6-dy-wxC"/>
-                            <constraint firstItem="TGo-03-JC9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="49" id="fbZ-p0-obM"/>
-                            <constraint firstItem="TGo-03-JC9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lYZ-SO-b31"/>
-                            <constraint firstItem="TGo-03-JC9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-64" id="mst-JB-Utd"/>
+                            <constraint firstItem="TGo-03-JC9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="4Gz-IL-G7g"/>
+                            <constraint firstItem="xpu-Ui-py9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RO0-WV-yC0"/>
+                            <constraint firstItem="xpu-Ui-py9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="TUD-sZ-GD6"/>
+                            <constraint firstItem="TGo-03-JC9" firstAttribute="top" secondItem="xpu-Ui-py9" secondAttribute="bottom" id="XVo-D7-pLi"/>
+                            <constraint firstItem="TGo-03-JC9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gdd-gu-AhI"/>
+                            <constraint firstItem="TGo-03-JC9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tnC-nY-7fm"/>
+                            <constraint firstItem="xpu-Ui-py9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="vgr-5K-h8s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -89,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1911" y="114"/>
+            <point key="canvasLocation" x="1910.625" y="113.02816901408451"/>
         </scene>
         <!--Device Info-->
         <scene sceneID="jGC-Aa-TJ3">
