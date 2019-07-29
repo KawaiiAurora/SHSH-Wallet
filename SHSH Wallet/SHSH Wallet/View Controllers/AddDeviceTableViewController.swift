@@ -39,12 +39,6 @@ class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSourc
         self.devices = devices
         
         createPickerView()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         easyTipPrefs.drawing.font = UIFont.systemFont(ofSize: 15.0)
         easyTipPrefs.drawing.foregroundColor = UIColor.black
@@ -105,7 +99,7 @@ class AddDeviceTableViewController: UITableViewController, UIPickerViewDataSourc
     }
     
     @IBAction func showToolTip(){
-        EasyTipView.show(animated: true, forView: apnonceButton, withinSuperview: self.view, text: "An APNonce is a random string generated when you restore. You can choose whether to specify it on pre-A12 devices since blobs without an APNonce work on those. However, you MUST specify an APNonce for A12 devices if you want to get useable blobs. Press on this tooltip to dismiss", preferences: easyTipPrefs, delegate: self)
+        EasyTipView.show(animated: true, forView: apnonceButton, withinSuperview: self.view, text: "An APNonce is a random string generated when you restore. You can choose whether to specify it on pre-A12 devices since blobs without an APNonce work on those. However, you MUST specify an APNonce for A12 devices if you want to get useable blobs. Tap on this tooltip to dismiss", preferences: easyTipPrefs, delegate: self)
     }
     
     func createPickerView(){

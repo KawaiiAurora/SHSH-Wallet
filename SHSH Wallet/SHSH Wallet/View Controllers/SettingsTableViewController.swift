@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import EasyTipView
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, EasyTipViewDelegate {
     
     @IBOutlet weak var saverSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var blobSaverButton: UIButton!
+    var easyTipPrefs = EasyTipView.Preferences()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,12 @@ class SettingsTableViewController: UITableViewController {
            saverSegmentedControl.selectedSegmentIndex = 0
         }
         
+        //Configure Easy Tips
+        
+        easyTipPrefs.drawing.font = UIFont.systemFont(ofSize: 15.0)
+        easyTipPrefs.drawing.foregroundColor = UIColor.black
+        easyTipPrefs.drawing.backgroundColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1.0)
+        
     }
 
     // MARK: - Table view data source
@@ -40,6 +49,10 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
+    }
+    
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        //Do nothing
     }
 
     @IBAction func indexChanged(_ sender: Any) {
@@ -54,5 +67,9 @@ class SettingsTableViewController: UITableViewController {
         default:
             break
         }
+    }
+    
+    @IBAction func showBlobSaverToolTip(){
+        EasyTipView.show(animated: true, forView: blobSaverButton, withinSuperview: self.view, text: "1Conan's TSS Saver lets you save blobs for release versions of iOS (non-beta) on their server and has many features such as letting you download all blobs at once, save them to Dropbox/Google Drive among others. SHSH Host has a more modern feel and saves both release and beta blobs on their server but you can't download all blobs at once or save to a cloud service. Tap on this tooltip to dismiss", preferences: easyTipPrefs, delegate: self)
     }
 }
