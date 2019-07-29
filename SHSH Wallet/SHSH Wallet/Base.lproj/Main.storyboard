@@ -22,17 +22,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lda-xI-SIe">
-                                    <size key="itemSize" width="120" height="134"/>
+                                    <size key="itemSize" width="120" height="130"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="PL1-2n-j4a" customClass="SigningCollectionViewCell" customModule="SHSH_Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="134"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="134"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zl-2z-1Lx">
@@ -1195,7 +1195,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEVICE TYPE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIF-aT-SwT">
-                                            <rect key="frame" x="35.5" y="134" width="105" height="21"/>
+                                            <rect key="frame" x="35.5" y="118" width="105" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1213,9 +1213,8 @@
                                 <constraints>
                                     <constraint firstItem="IIF-aT-SwT" firstAttribute="centerX" secondItem="IUP-PM-0Io" secondAttribute="centerX" id="9jD-nZ-Zn9"/>
                                     <constraint firstItem="DgI-Rf-tz2" firstAttribute="centerX" secondItem="IUP-PM-0Io" secondAttribute="centerX" id="Ie7-9B-cy3"/>
-                                    <constraint firstItem="IIF-aT-SwT" firstAttribute="top" secondItem="DgI-Rf-tz2" secondAttribute="bottom" constant="26" id="ZWQ-X6-3XV"/>
+                                    <constraint firstItem="IIF-aT-SwT" firstAttribute="top" secondItem="DgI-Rf-tz2" secondAttribute="bottom" constant="10" id="ZWQ-X6-3XV"/>
                                     <constraint firstItem="DgI-Rf-tz2" firstAttribute="top" secondItem="IUP-PM-0Io" secondAttribute="top" id="pO7-li-NYD"/>
-                                    <constraint firstAttribute="bottom" secondItem="IIF-aT-SwT" secondAttribute="bottom" constant="20" id="qF2-IV-F6x"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="deviceTypeImageView" destination="DgI-Rf-tz2" id="k3z-kl-d4W"/>

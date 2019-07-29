@@ -62,10 +62,6 @@ class SelectDeviceCollectionViewController: UICollectionViewController, NSFetche
             }
         }
         )
-        
-        //print(devices)
-        
-        // Do any additional setup after loading the view.
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -183,7 +179,6 @@ class SelectDeviceCollectionViewController: UICollectionViewController, NSFetche
         var findIndex = 0
         
         for device in SelectDeviceCollectionViewController.devices{
-            print(findIndex)
             if(device.modelID == deviceModel){
                 return findIndex
             }
@@ -232,8 +227,8 @@ class SelectDeviceCollectionViewController: UICollectionViewController, NSFetche
     }
 }
 
-/*extension SelectDeviceCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension SelectDeviceCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width/10, height: self.view.frame.height/10)
+        return CGSize(width: self.view.frame.width/2.1, height: 150.0)
     }
-}*/
+}

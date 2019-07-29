@@ -12,7 +12,7 @@ Main Features:
 Things To Look At:
 * Implement proper fakesigning but there's the DEB for now 
 * Add ability to specify a device-specific nonce which is essential for saving blobs of A12 devices [x]
-* In the 'Signing Status' Tab, sort the devices by the type so you don't have to scroll through the whole list of devices to get to your device
+* In the 'Signing Status' Tab, sort the devices by the type so you don't have to scroll through the whole list of devices to get to your device [x]
 * Implement a Search Device feature so you can easily find the device of your choice
 * Feature to be able to check which blobs you have saved
 * Add notifications for when ipsw.me's firmware.json file is changed. This usually happens when a new firmware is released.
