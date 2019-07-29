@@ -13,7 +13,7 @@ class SaveBlobsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet var saveBlobsView: UIView!
     @IBOutlet var tableView: UITableView!
-    let savingURL = URL(string: "https://tsssaver.1conan.com/")!
+    var savingURL:URL?
     var webView: WKWebView!
     
     var userDevice:UserDeviceMO!
@@ -21,6 +21,20 @@ class SaveBlobsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Loading saving URL. Conan is the default
+        if let saverPreference = UserDefaults.standard.string(forKey: "saverPreference"){
+            if(saverPreference == "1Conan"){
+                savingURL = URL(string: Constants.Conan_Website_URL)
+            }
+            else if(saverPreference == "SHSH_Host"){
+                savingURL = URL(string: Constants.SHSH_Host_Website_URL)
+            }else{
+                savingURL = URL(string: Constants.Conan_Website_URL)
+            }
+        }else{
+            savingURL = URL(string: Constants.Conan_Website_URL)
+        }
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
@@ -34,9 +48,13 @@ class SaveBlobsViewController: UIViewController, UITableViewDelegate, UITableVie
         let rightConstraint = NSLayoutConstraint(item: webView, attribute: .rightMargin, relatedBy: .equal, toItem: saveBlobsView, attribute: .rightMargin, multiplier: 1, constant: 0)
         let bottomContraint = NSLayoutConstraint(item: webView, attribute: .bottomMargin, relatedBy: .equal, toItem: saveBlobsView, attribute: .bottomMargin, multiplier: 1, constant: 0)
         saveBlobsView.addConstraints([height, width, leftConstraint, rightConstraint, bottomContraint])
-
-        let request = URLRequest(url: savingURL)
-        webView.load(request)
+        
+        if let savingURL = savingURL{
+            let request = URLRequest(url: savingURL)
+            webView.load(request)
+        }else{
+            print("Error in URL!")
+        }
         // Do any additional setup after loading the view.
     }
 

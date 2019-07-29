@@ -13,5 +13,12 @@ class Constants{
     
     static let firmwareAPI_URL = "https://api.ipsw.me/v2.1/firmwares.json"
     static let deviceImageAPI_URL = "https://ipsw.me/api/images/500x/assets/images/devices/"
+    static let Conan_Website_URL = "https://tsssaver.1conan.com/"
+    static let SHSH_Host_Website_URL = "https://shsh.host/"
+    
+    /*
+     UserDefaults being utilised
+     savingPreference (1Conan,SHSH_Host)
+     */
     
 }

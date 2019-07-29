@@ -10,15 +10,16 @@ Main Features:
 * Limited Offline Functionality (Must've opened it succesfully at least once)
 
 Things To Look At:
-* Implement proper fakesigning but there?s the DEB for now
-* Add ability to specify a device-specific nonce which is essential for saving blobs of A12 devices
-* In the ?Signing Status? Tab, sort the devices by the type so you don?t have to scroll through the whole list of devices to get to your device
+* Implement proper fakesigning but there's the DEB for now
+* Add ability to specify a device-specific nonce which is essential for saving blobs of A12 devices [x]
+* In the 'Signing Status' Tab, sort the devices by the type so you don't have to scroll through the whole list of devices to get to your device
 * Implement a Search Device feature so you can easily find the device of your choice
 * Feature to be able to check which blobs you have saved
-* Add notifications for when ipsw.me?s firmware.json file is changed. This usually happens when a new firmware is released.
+* Add notifications for when ipsw.me's firmware.json file is changed. This usually happens when a new firmware is released.
 * Add some information about what blobs are and how to save them
 * Add SHSH.Host a blob saving website
 * Auto-saving of blobs (no promises on this)
+* Ability to filter out devices you don't care about
 * Beta support maybe?
 
 Note: Just because I said I'll look at them, doesn?t mean they?ll be implemented anytime soon. I?m still a beginner!
