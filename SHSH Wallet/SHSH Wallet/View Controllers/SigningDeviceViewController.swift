@@ -14,14 +14,15 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
     
     @IBOutlet var collectionView: UICollectionView!
     var devices:[Device]! //Given by device type selector
-    var searchResults=[Device]()
-    var isSearching = false
+    var shownDevices=[Device]()
     let alert = UIAlertController(title: "SHSH Wallet", message: "Application is loading. Please wait", preferredStyle: .alert)
     
     var fetchResultController: NSFetchedResultsController<ServerDataMO>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        shownDevices = devices
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,27 +31,17 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if(!isSearching){
-            return devices.count
-        }else{
-            return searchResults.count
-        }
+        return shownDevices.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! SigningCollectionViewCell
         
-        if(!isSearching){
-            cell.nameLabel.text = devices[indexPath.item].name
-            if let image = devices[indexPath.item].image{
-                cell.imageView.image = image
-            }
-        }else{
-            cell.nameLabel.text = searchResults[indexPath.item].name
-            if let image = searchResults[indexPath.item].image{
-                cell.imageView.image = image
-            }
+        cell.nameLabel.text = shownDevices[indexPath.item].name
+        if let image = shownDevices[indexPath.item].image{
+            cell.imageView.image = image
         }
+            
         return cell
     }
     
@@ -58,17 +49,18 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
         performSegue(withIdentifier: "showDevice", sender: indexPath.item)
     }
     
-    /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-     
-     isSearching = searchText.isEmpty ? true : false
-        searchResults = searchText.isEmpty ? [] : devices.filter { (item: Device) -> Bool in
-            // If dataItem matches the searchText, return true to include it
-            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if(!searchText.isEmpty){
+            shownDevices = devices.filter({ (device) -> Bool in
+                device.name!.lowercased().contains(searchText.lowercased())
+            })
+        }else{
+            shownDevices = devices
         }
         
         collectionView.reloadData()
-    }*/
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "showDevice"{
@@ -76,7 +68,7 @@ class SigningViewController: UIViewController, UICollectionViewDataSource, UICol
                 return
             }
             let destinationController = segue.destination as! DeviceInfoViewController
-            destinationController.device = devices[selectedRow]
+            destinationController.device = shownDevices[selectedRow]
         }
     }
 }
