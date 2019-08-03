@@ -25,7 +25,7 @@ class MoreCreditsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 4
     }
     
     @IBAction func copiableLabelButton(){
@@ -42,6 +42,12 @@ class MoreCreditsTableViewController: UITableViewController {
     
     @IBAction func toolTipsButton(){
         let apiURL = URL(string: "https://github.com/teodorpatras/EasyTipView")
+        let safariView = SFSafariViewController(url: apiURL!)
+        self.present(safariView, animated: true, completion: nil)
+    }
+    
+    @IBAction func filterIconButton(){
+        let apiURL = URL(string: "https://www.flaticon.com/free-icon/filter_107799")
         let safariView = SFSafariViewController(url: apiURL!)
         self.present(safariView, animated: true, completion: nil)
     }

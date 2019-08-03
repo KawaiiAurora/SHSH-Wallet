@@ -795,7 +795,7 @@
                                                         <action selector="toolTipsButton" destination="q7a-o6-1KS" eventType="touchUpInside" id="Ybh-pN-dfk"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tool Tips Thanks to Teodor Patraş' Easy Tip View" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hts-UI-bLl">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tool Tips Thanks To Teodor Patraş' Easy Tip View" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hts-UI-bLl">
                                                     <rect key="frame" x="16" y="0.0" width="212" height="51"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="212" id="Ipp-zm-LFt"/>
@@ -831,7 +831,7 @@
                                                         <action selector="copiableLabelButton" destination="q7a-o6-1KS" eventType="touchUpInside" id="lnb-QR-5F9"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copiable Labels Thanks to Stephen Radford" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ma-iS-aM3">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copiable Labels Thanks To Stephen Radford" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ma-iS-aM3">
                                                     <rect key="frame" x="16" y="0.0" width="212" height="51"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="212" id="7Eb-rh-KF2"/>
@@ -850,6 +850,42 @@
                                                 <constraint firstItem="9ma-iS-aM3" firstAttribute="leading" secondItem="WVv-s3-hAT" secondAttribute="leading" constant="16" id="aGV-Kl-2Sj"/>
                                                 <constraint firstItem="6WP-iO-MIP" firstAttribute="centerY" secondItem="WVv-s3-hAT" secondAttribute="centerY" id="kVV-2y-kIa"/>
                                                 <constraint firstAttribute="trailing" secondItem="6WP-iO-MIP" secondAttribute="trailing" constant="16" id="lOW-px-5e4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="51" id="VTx-fj-zgU">
+                                        <rect key="frame" x="0.0" y="153" width="320" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VTx-fj-zgU" id="dod-PZ-lip">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwt-BX-bTd">
+                                                    <rect key="frame" x="274" y="7" width="30" height="37"/>
+                                                    <state key="normal" title="Link"/>
+                                                    <connections>
+                                                        <action selector="filterIconButton" destination="q7a-o6-1KS" eventType="touchUpInside" id="xdt-ru-5D1"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter Button Icon By Freepik" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnk-I3-JqT">
+                                                    <rect key="frame" x="16" y="0.0" width="212" height="51"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="51" id="7BF-Kg-MF7"/>
+                                                        <constraint firstAttribute="width" constant="212" id="Cs8-l0-YEn"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="hwt-BX-bTd" secondAttribute="bottom" constant="7" id="GjP-m2-tWe"/>
+                                                <constraint firstAttribute="trailing" secondItem="hwt-BX-bTd" secondAttribute="trailing" constant="16" id="SCQ-ep-xmg"/>
+                                                <constraint firstItem="cnk-I3-JqT" firstAttribute="top" secondItem="dod-PZ-lip" secondAttribute="top" id="bsv-U6-J3R"/>
+                                                <constraint firstItem="hwt-BX-bTd" firstAttribute="centerY" secondItem="dod-PZ-lip" secondAttribute="centerY" id="h00-SK-xJz"/>
+                                                <constraint firstItem="cnk-I3-JqT" firstAttribute="leading" secondItem="dod-PZ-lip" secondAttribute="leading" constant="16" id="n6U-ad-CKl"/>
+                                                <constraint firstItem="hwt-BX-bTd" firstAttribute="top" secondItem="dod-PZ-lip" secondAttribute="top" constant="7" id="xEL-Tu-9w1"/>
+                                                <constraint firstAttribute="bottom" secondItem="cnk-I3-JqT" secondAttribute="bottom" id="ysa-ow-W8S"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
