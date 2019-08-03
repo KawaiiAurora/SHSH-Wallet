@@ -202,7 +202,17 @@ class SelectDeviceCollectionViewController: UICollectionViewController, NSFetche
         var deviceArray = [Device]()
         for device in SelectDeviceCollectionViewController.devices{
             if((device.modelID?.contains(deviceType))!){
-                deviceArray.append(device)
+                if let rawFilterArray = UserDefaults.standard.array(forKey: "filteredDevices"){
+                    if let filterArray = rawFilterArray as? [String]{
+                        if(!filterArray.contains(device.name!)){
+                            deviceArray.append(device)
+                        }//else skip device
+                    }else{
+                       deviceArray.append(device)
+                    }
+                }else{
+                    deviceArray.append(device)
+                }
             }
         }
         print("Loop Over, Device Type Image Not Found")

@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="xpu-Ui-py9">
+                            <searchBar contentMode="redraw" placeholder="Search Device" translatesAutoresizingMaskIntoConstraints="NO" id="xpu-Ui-py9">
                                 <rect key="frame" x="0.0" y="64" width="320" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -707,8 +707,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0.2" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYp-rs-X7r">
-                                                    <rect key="frame" x="112" y="12" width="96.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.1" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYp-rs-X7r">
+                                                    <rect key="frame" x="120" y="12" width="80.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -865,6 +865,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hRb-7O-7qI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1830" y="920"/>
+        </scene>
+        <!--Filter Devices-->
+        <scene sceneID="mLK-hY-xdV">
+            <objects>
+                <tableViewController title="Filter Devices" id="U2m-XK-q7z" customClass="FilterDevicesTableViewController" customModule="SHSH_Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="49H-jg-kHy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="jL4-h2-aph">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jL4-h2-aph" id="zW0-p6-iR2">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="U2m-XK-q7z" id="uzj-Wb-iux"/>
+                            <outlet property="delegate" destination="U2m-XK-q7z" id="KoB-yN-EIM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Filter Devices" id="3C0-LV-DpV">
+                        <barButtonItem key="leftBarButtonItem" title="Reset" id="S5V-cx-e4y">
+                            <connections>
+                                <action selector="resetDevices" destination="U2m-XK-q7z" id="bHw-wd-SKu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="5aC-bZ-373">
+                            <connections>
+                                <action selector="doneButton" destination="U2m-XK-q7z" id="xNi-af-O9X"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gxL-Hg-YjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4136" y="934"/>
         </scene>
         <!--Settings-->
         <scene sceneID="g6V-cl-QkH">
@@ -1237,7 +1277,13 @@
                             <outlet property="delegate" destination="Xh9-dj-G83" id="HoG-QE-gRp"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Select Device" id="mlS-Zk-3dq"/>
+                    <navigationItem key="navigationItem" title="Select Device" id="mlS-Zk-3dq">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="filter50" id="g1I-KG-Zxq">
+                            <connections>
+                                <segue destination="K5f-iG-uV5" kind="presentation" id="ThJ-uQ-evY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showSigningStatus" id="hgk-wa-DP2"/>
                     </connections>
@@ -1505,8 +1551,27 @@
             </objects>
             <point key="canvasLocation" x="3513.75" y="-2106.3380281690143"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YmE-rD-F6r">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K5f-iG-uV5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w75-u7-h0W">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="U2m-XK-q7z" kind="relationship" relationship="rootViewController" id="NPW-h5-h6H"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qD1-26-dMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3139" y="934"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="filter50" width="25" height="25"/>
         <image name="penguin" width="200" height="200"/>
         <image name="placeholder" width="259" height="298"/>
         <image name="placeholder icon" width="21" height="24"/>

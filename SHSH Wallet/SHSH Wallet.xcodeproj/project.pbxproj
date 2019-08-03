@@ -11,6 +11,7 @@
 		D01485F722D940200096172D /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01485F622D9401F0096172D /* Device.swift */; };
 		D01485F922D9418B0096172D /* Firmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01485F822D9418B0096172D /* Firmware.swift */; };
 		D01485FB22D952BB0096172D /* SigningCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01485FA22D952BB0096172D /* SigningCollectionViewCell.swift */; };
+		D01514B122F59830009A23D5 /* FilterDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01514B022F59830009A23D5 /* FilterDevicesTableViewController.swift */; };
 		D01D967322DA299C0095F0F4 /* DeviceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D967222DA299C0095F0F4 /* DeviceInfoViewController.swift */; };
 		D01D967522DA2EB60095F0F4 /* FirmwareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D967422DA2EB60095F0F4 /* FirmwareTableViewCell.swift */; };
 		D01E589C22EA4AD0009F53EC /* SRCopiableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E589B22EA4AD0009F53EC /* SRCopiableLabel.swift */; };
@@ -42,6 +43,7 @@
 		D01485F622D9401F0096172D /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		D01485F822D9418B0096172D /* Firmware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firmware.swift; sourceTree = "<group>"; };
 		D01485FA22D952BB0096172D /* SigningCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningCollectionViewCell.swift; sourceTree = "<group>"; };
+		D01514B022F59830009A23D5 /* FilterDevicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDevicesTableViewController.swift; sourceTree = "<group>"; };
 		D01D967222DA299C0095F0F4 /* DeviceInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoViewController.swift; sourceTree = "<group>"; };
 		D01D967422DA2EB60095F0F4 /* FirmwareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareTableViewCell.swift; sourceTree = "<group>"; };
 		D01E589B22EA4AD0009F53EC /* SRCopiableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRCopiableLabel.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				D0F5154622EEE67E00B63AB0 /* SettingsTableViewController.swift */,
 				D0C16BCE22DB74B30003F365 /* UserDeviceViewController.swift */,
 				D02BDA4322DE9A85007C5F11 /* AboutTableViewController.swift */,
+				D01514B022F59830009A23D5 /* FilterDevicesTableViewController.swift */,
 				D051B6F622DE181500ED50EB /* SaveBlobsViewController.swift */,
 				D0F5154822EEF1DB00B63AB0 /* SelectDeviceCollectionViewController.swift */,
 				D0B16F8522DA7EA0000CE573 /* AddDeviceTableViewController.swift */,
@@ -311,6 +314,7 @@
 			files = (
 				D01485FB22D952BB0096172D /* SigningCollectionViewCell.swift in Sources */,
 				D0CB263E22EB30A000150F9B /* Constants.swift in Sources */,
+				D01514B122F59830009A23D5 /* FilterDevicesTableViewController.swift in Sources */,
 				D0AECC3522D92FEE0025999A /* SigningDeviceViewController.swift in Sources */,
 				D0C16BCF22DB74B30003F365 /* UserDeviceViewController.swift in Sources */,
 				D0F5154522EEE45B00B63AB0 /* MoreCreditsTableViewController.swift in Sources */,
