@@ -161,4 +161,46 @@ class NetworkTools{
             return
         }
     }
+    
+    static func getSavedBlobData(ecid: String, completion: @escaping (Data?, String)->Void){
+        
+        guard let savedblobsURL = URL(string: (Constants.Conan_GetBlobs_API + ecid)) else{
+            completion(nil,"Bad URL")
+            return
+        }
+        
+        //Creating session with 2 minute timeout
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 120.0
+        sessionConfig.timeoutIntervalForResource = 120.0
+        let session = URLSession(configuration: sessionConfig)
+        
+        let request = URLRequest(url: savedblobsURL)
+        let task = session.dataTask(with: request, completionHandler: {
+            (data, response, error) -> Void in
+            
+            if let error = error{
+                print("ERROR: \(error)")
+                
+                completion(nil, "Error Connecting To Server")
+                return
+            }
+            
+            if let data = data{
+                //Updating Local Firmware JSON File
+                DispatchQueue.main.async {
+                    //If it got till here, the data is fine and the firmware JSON file can be returned
+                    completion(data,"Good Data")
+                    return
+                }
+            }
+            else{
+                print("Bad Downloaded Data")
+                completion(nil,"Bad Downloaded Data")
+                return
+            }
+        })
+        
+        task.resume()
+    }
 }

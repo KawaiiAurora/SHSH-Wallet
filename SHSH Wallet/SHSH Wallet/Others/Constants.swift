@@ -18,6 +18,7 @@ class Constants{
     static let deviceImageAPI_URL = "https://ipsw.me/api/images/500x/assets/images/devices/"
     static let Conan_Website_URL = "https://tsssaver.1conan.com/"
     static let SHSH_Host_Website_URL = "https://shsh.host/"
+    static let Conan_GetBlobs_API = "https://stor.1conan.com/json/tsssaver/shsh/"
     
     /*
      UserDefaults being utilised

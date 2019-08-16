@@ -17,6 +17,9 @@
 		D01E589C22EA4AD0009F53EC /* SRCopiableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E589B22EA4AD0009F53EC /* SRCopiableLabel.swift */; };
 		D02B5E7122DE867B00FA8C7E /* EditDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02B5E7022DE867B00FA8C7E /* EditDeviceViewController.swift */; };
 		D02BDA4422DE9A85007C5F11 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BDA4322DE9A85007C5F11 /* AboutTableViewController.swift */; };
+		D031210C23061F1B00A46A2B /* SavedBlobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D031210B23061F1B00A46A2B /* SavedBlobsTableViewController.swift */; };
+		D031210E23061F8A00A46A2B /* SavedBlobsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D031210D23061F8A00A46A2B /* SavedBlobsTableViewCell.swift */; };
+		D0312110230624AB00A46A2B /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = D031210F230624AB00A46A2B /* Blob.swift */; };
 		D051B6F722DE181500ED50EB /* SaveBlobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051B6F622DE181500ED50EB /* SaveBlobsViewController.swift */; };
 		D0AECC3322D92FEE0025999A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AECC3222D92FEE0025999A /* AppDelegate.swift */; };
 		D0AECC3522D92FEE0025999A /* SigningDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AECC3422D92FEE0025999A /* SigningDeviceViewController.swift */; };
@@ -49,6 +52,9 @@
 		D01E589B22EA4AD0009F53EC /* SRCopiableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRCopiableLabel.swift; sourceTree = "<group>"; };
 		D02B5E7022DE867B00FA8C7E /* EditDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeviceViewController.swift; sourceTree = "<group>"; };
 		D02BDA4322DE9A85007C5F11 /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
+		D031210B23061F1B00A46A2B /* SavedBlobsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBlobsTableViewController.swift; sourceTree = "<group>"; };
+		D031210D23061F8A00A46A2B /* SavedBlobsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBlobsTableViewCell.swift; sourceTree = "<group>"; };
+		D031210F230624AB00A46A2B /* Blob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
 		D051B6F622DE181500ED50EB /* SaveBlobsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBlobsViewController.swift; sourceTree = "<group>"; };
 		D0AECC2F22D92FEE0025999A /* SHSH Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SHSH Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AECC3222D92FEE0025999A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				D0B16F8522DA7EA0000CE573 /* AddDeviceTableViewController.swift */,
 				D02B5E7022DE867B00FA8C7E /* EditDeviceViewController.swift */,
 				D0B16F8922DA86B1000CE573 /* MyDevicesTableViewController.swift */,
+				D031210B23061F1B00A46A2B /* SavedBlobsTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -159,6 +166,7 @@
 				D0C16BCC22DB73FF0003F365 /* SingleDeviceTableViewCell.swift */,
 				D01E589B22EA4AD0009F53EC /* SRCopiableLabel.swift */,
 				D0B16F8322DA7E2A000CE573 /* MyDeviceTableViewCell.swift */,
+				D031210D23061F8A00A46A2B /* SavedBlobsTableViewCell.swift */,
 			);
 			path = "View Cells";
 			sourceTree = "<group>";
@@ -169,6 +177,7 @@
 				D0B16F8B22DA8AD7000CE573 /* UserDevice.swift */,
 				D01485F622D9401F0096172D /* Device.swift */,
 				D01485F822D9418B0096172D /* Firmware.swift */,
+				D031210F230624AB00A46A2B /* Blob.swift */,
 			);
 			path = "Data Classes";
 			sourceTree = "<group>";
@@ -312,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D031210C23061F1B00A46A2B /* SavedBlobsTableViewController.swift in Sources */,
 				D01485FB22D952BB0096172D /* SigningCollectionViewCell.swift in Sources */,
 				D0CB263E22EB30A000150F9B /* Constants.swift in Sources */,
 				D01514B122F59830009A23D5 /* FilterDevicesTableViewController.swift in Sources */,
@@ -319,6 +329,7 @@
 				D0C16BCF22DB74B30003F365 /* UserDeviceViewController.swift in Sources */,
 				D0F5154522EEE45B00B63AB0 /* MoreCreditsTableViewController.swift in Sources */,
 				D0B16F8C22DA8AD7000CE573 /* UserDevice.swift in Sources */,
+				D0312110230624AB00A46A2B /* Blob.swift in Sources */,
 				D0F5154B22EEF2A400B63AB0 /* SelectDeviceCollectionViewCell.swift in Sources */,
 				D0AECC3B22D92FEF0025999A /* SHSH_Wallet.xcdatamodeld in Sources */,
 				D01D967322DA299C0095F0F4 /* DeviceInfoViewController.swift in Sources */,
@@ -329,6 +340,7 @@
 				D0E2E18222EC59FD00712BD0 /* NetworkTools.swift in Sources */,
 				D0B16F8622DA7EA0000CE573 /* AddDeviceTableViewController.swift in Sources */,
 				D01485F722D940200096172D /* Device.swift in Sources */,
+				D031210E23061F8A00A46A2B /* SavedBlobsTableViewCell.swift in Sources */,
 				D0F5154722EEE67E00B63AB0 /* SettingsTableViewController.swift in Sources */,
 				D02BDA4422DE9A85007C5F11 /* AboutTableViewController.swift in Sources */,
 				D01E589C22EA4AD0009F53EC /* SRCopiableLabel.swift in Sources */,

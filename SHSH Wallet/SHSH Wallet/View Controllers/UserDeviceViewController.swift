@@ -102,6 +102,10 @@ class UserDeviceViewController: UIViewController, UITableViewDelegate, UITableVi
             let targetController = destinationController.topViewController as! EditDeviceTableViewController
             targetController.deviceBeingEdited = userDevice
         }
+        else if segue.identifier == "showSavedBlobs"{
+            let destination = segue.destination as! SavedBlobsTableViewController
+            destination.userDevice = userDevice
+        }
     }
 
 }

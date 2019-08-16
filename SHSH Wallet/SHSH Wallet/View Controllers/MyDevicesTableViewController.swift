@@ -18,6 +18,8 @@ class MyDevicesTableViewController: UITableViewController, NSFetchedResultsContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         let fetchRequest: NSFetchRequest<UserDeviceMO> = UserDeviceMO.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "nickname", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
